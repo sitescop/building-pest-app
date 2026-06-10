@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Client Agreement Form</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
+<body>
+
+<h1>Client Agreement Form</h1>
+
+<form>
+
+<p>
+<label>Client Name</label><br>
+<input type="text" style="width:400px;">
+</p>
+
+<p>
+<label>Email</label><br>
+<input type="email" style="width:400px;">
+</p>
+
+<p>
+<label>Phone</label><br>
+<input type="text" style="width:400px;">
+</p>
+
+<p>
+<label>Property Address</label><br>
+<input type="text" style="width:600px;">
+</p>
+
+<p>
+<label>Inspection Type</label><br>
+<select style="width:300px;">
+<option>Building Inspection</option>
+<option>Pest Inspection</option>
+<option>Building & Pest Inspection</option>
+<option>Handover Inspection</option>
+</select>
+</p>
+
+<p>
+<label>Inspection Date</label><br>
+<input type="date">
+</p>
+
+<h2>Agreement Terms</h2>
+
+<div style="background:white;padding:20px;border-radius:10px;max-width:900px;line-height:1.6;">
+
+<p>
+The inspection will be carried out in accordance with Australian Standards where applicable.
+</p>
+
+<p>
+The inspection is a visual assessment only and does not include destructive testing or inspection of concealed areas.
+</p>
+
+<p>
+The report is prepared solely for the client named in this agreement and must not be relied upon by third parties.
+</p>
+
+<p>
+The inspection may not identify all defects, faults, damage, pest activity, or conditions that are hidden, inaccessible, or not visible at the time of inspection.
+</p>
+
+<p>
+The client acknowledges that the inspection is limited by access, visibility, weather conditions, and other factors beyond the inspector's control.
+</p>
+
+<p>
+By proceeding with this inspection, the client agrees to the inspection terms and conditions.
+</p>
+
+</div>
+
+<br>
+
+<p>
+<input type="checkbox">
+I have read and agree to the terms and conditions.
+</p>
+
+<p>
+<label>Client Signature</label><br>
+<input type="text" placeholder="Type Full Name" style="width:400px;">
+</p>
+
+<p>
+<label>Date Signed</label><br>
+<input type="date">
+</p>
+
+<br>
+
+<button type="submit">Submit Agreement</button>
+
+</form>
+
+<br><br>
+
+<a href="forms.html">← Back to Forms</a>
+
+</body>
+</html>
