@@ -7,7 +7,7 @@
 
 <h1>In Progress Jobs</h1>
 
-<table border="1" cellpadding="10">
+<table border="1" cellpadding="10" id="jobsTable">
     <tr>
         <th>Job No</th>
         <th>Client</th>
@@ -18,21 +18,37 @@
         <th>Delete</th>
     </tr>
 
-    <tr>
-        <td>PT-001</td>
-        <td>Test Client</td>
-        <td>11/06/2026</td>
-        <td>Pest & Timber</td>
-        <td>Draft</td>
-        <td><button>Open</button></td>
-        <td><button>Delete</button></td>
-    </tr>
+    
 
 </table>
 
 <br><br>
 
 <a href="forms.html">← Back to Forms</a>
+<script>
 
+let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
+
+let table = document.getElementById("jobsTable");
+
+jobs.forEach(job => {
+
+    let row = table.insertRow(-1);
+
+    row.insertCell(0).innerHTML = job.jobNumber;
+    row.insertCell(1).innerHTML = job.client;
+    row.insertCell(2).innerHTML = job.date;
+    row.insertCell(3).innerHTML = job.inspectionType;
+    row.insertCell(4).innerHTML = job.status;
+
+    row.insertCell(5).innerHTML =
+        '<button onclick="alert(\'Open job coming next\')">Open</button>';
+
+    row.insertCell(6).innerHTML =
+        '<button onclick="alert(\'Delete coming next\')">Delete</button>';
+
+});
+
+</script>
 </body>
 </html>
