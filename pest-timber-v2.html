@@ -788,14 +788,33 @@ else if (field.type !== "file") {
 
        let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
 
-jobs.push({
-    jobNumber: document.getElementById("jobNumber").value,
-    date: new Date().toLocaleDateString(),
-    client: formData["field_4"] || "",
-    inspectionType: formData["field_2"] || "",
-    status: "Draft",
-    data: formData
-});
+let existingIndex = jobs.findIndex(
+    job => job.jobNumber === document.getElementById("jobNumber").value
+);
+
+if (existingIndex >= 0) {
+
+    jobs[existingIndex] = {
+        jobNumber: document.getElementById("jobNumber").value,
+        date: new Date().toLocaleDateString(),
+        client: formData["field_4"] || "",
+        inspectionType: formData["field_2"] || "",
+        status: "Draft",
+        data: formData
+    };
+
+} else {
+
+    jobs.push({
+        jobNumber: document.getElementById("jobNumber").value,
+        date: new Date().toLocaleDateString(),
+        client: formData["field_4"] || "",
+        inspectionType: formData["field_2"] || "",
+        status: "Draft",
+        data: formData
+    });
+
+}
 
 localStorage.setItem(
     "sitescopJobs",
