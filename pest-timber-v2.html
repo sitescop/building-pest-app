@@ -743,7 +743,29 @@
 document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector("form");
+const savedData = localStorage.getItem("sitescopDraftInspection");
 
+if (savedData) {
+
+    const formData = JSON.parse(savedData);
+
+    const fields = form.querySelectorAll("input, textarea, select");
+
+    fields.forEach((field, index) => {
+
+        if (formData["field_" + index] !== undefined) {
+
+            if (field.type === "checkbox") {
+                field.checked = formData["field_" + index];
+            } else {
+                field.value = formData["field_" + index];
+            }
+
+        }
+
+    });
+
+}
     const saveButton = document.querySelector('button[type="submit"]');
 
     saveButton.addEventListener("click", function (e) {
