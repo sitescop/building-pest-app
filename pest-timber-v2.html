@@ -822,6 +822,33 @@ if (jobNumberField && !jobNumberField.value) {
 
     localStorage.setItem("lastJobNumber", nextNumber);
 }  
+    const currentInspection =
+JSON.parse(localStorage.getItem("currentInspection"));
+
+if (currentInspection && currentInspection.data) {
+
+    const formData = currentInspection.data;
+
+    const fields = document.querySelectorAll(
+        "input, textarea, select"
+    );
+
+    fields.forEach((field, index) => {
+
+        if (field.type === "checkbox") {
+
+            field.checked =
+                formData["field_" + index] || false;
+
+        } else if (field.type !== "file") {
+
+            field.value =
+                formData["field_" + index] || "";
+        }
+
+    });
+
+}
 </script>
 </body>
 </html>
