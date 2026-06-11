@@ -41,7 +41,14 @@ jobs.forEach(job => {
     row.insertCell(3).innerHTML = job.inspectionType;
     row.insertCell(4).innerHTML = job.status;
 
-  function openJob(index) {
+ row.insertCell(5).innerHTML =
+    '<button onclick="openJob(' + (jobs.indexOf(job)) + ')">Open</button>';
+
+row.insertCell(6).innerHTML =
+    '<button onclick="deleteJob(' + (jobs.indexOf(job)) + ')">Delete</button>';
+
+});
+    function openJob(index) {
 
     let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
 
@@ -53,10 +60,6 @@ jobs.forEach(job => {
     window.location.href = "pest-timber-v2.html";
 }
 
-row.insertCell(6).innerHTML =
-    '<button onclick="deleteJob(' + (jobs.indexOf(job)) + ')">Delete</button>';
-
-});
 function deleteJob(index) {
     let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
 
