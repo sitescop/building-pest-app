@@ -15,7 +15,7 @@
 
 <p>
 <label>Job Number</label><br>
-<input type="text" style="width:300px;">
+<input type="text" id="jobNumber" style="width:300px;" readonly>
 </p>
 
 <p>
@@ -795,6 +795,22 @@ else if (field.type !== "file") {
     });
 
 });
+  // Auto Job Number Generator
+if (!localStorage.getItem("lastJobNumber")) {
+    localStorage.setItem("lastJobNumber", "0");
+}
+
+const jobNumberField = document.getElementById("jobNumber");
+
+if (jobNumberField && !jobNumberField.value) {
+    let nextNumber = parseInt(localStorage.getItem("lastJobNumber")) + 1;
+
+    let formattedNumber = "PT-" + String(nextNumber).padStart(4, "0");
+
+    jobNumberField.value = formattedNumber;
+
+    localStorage.setItem("lastJobNumber", nextNumber);
+}  
 </script>
 </body>
 </html>
