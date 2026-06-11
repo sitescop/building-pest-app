@@ -61,6 +61,11 @@ row.insertCell(6).innerHTML =
 }
 
 function deleteJob(index) {
+
+    if (!confirm("Are you sure you want to delete this job?")) {
+        return;
+    }
+
     let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
 
     jobs.splice(index, 1);
@@ -68,6 +73,7 @@ function deleteJob(index) {
     localStorage.setItem("sitescopJobs", JSON.stringify(jobs));
 
     location.reload();
+
 }
 </script>
 </body>
