@@ -739,6 +739,40 @@
 <br><br>
 
 <a href="forms.html">← Back to Forms</a>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const form = document.querySelector("form");
+
+    const saveButton = document.querySelector('button[type="submit"]');
+
+    saveButton.addEventListener("click", function (e) {
+
+        e.preventDefault();
+
+        const formData = {};
+
+        const fields = form.querySelectorAll("input, textarea, select");
+
+        fields.forEach((field, index) => {
+
+            if (field.type === "checkbox") {
+                formData["field_" + index] = field.checked;
+            } else {
+                formData["field_" + index] = field.value;
+            }
+
+        });
+
+        localStorage.setItem(
+            "sitescopDraftInspection",
+            JSON.stringify(formData)
+        );
+
+        alert("Draft saved successfully.");
+    });
+
+});
+</script>
 </body>
 </html>
