@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recycle Bin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Recycle Bin</h1>
+
+<table border="1" id="recycleTable">
+    <tr>
+        <th>Job No</th>
+        <th>Client</th>
+        <th>Date</th>
+        <th>Inspection Type</th>
+        <th>Restore</th>
+    </tr>
+</table>
+
+<br>
+<a href="jobs.html">← Back to Jobs</a>
+
+<script>
+
+let recycleBin =
+JSON.parse(localStorage.getItem("sitescopRecycleBin")) || [];
+
+let table = document.getElementById("recycleTable");
+
+recycleBin.forEach(job => {
+
+    let row = table.insertRow(-1);
+
+    row.insertCell(0).innerHTML = job.jobNumber;
+    row.insertCell(1).innerHTML = job.client;
+    row.insertCell(2).innerHTML = job.date;
+    row.insertCell(3).innerHTML = job.inspectionType;
+
+    row.insertCell(4).innerHTML =
+        '<button onclick="restoreJob(' +
+        recycleBin.indexOf(job) +
+        ')">Restore</button>';
+
+});
+
+function restoreJob(index) {
+
+    let recycleBin =
+    JSON.parse(localStorage.getItem("sitescopRecycleBin")) || [];
+
+    let jobs =
+    JSON.parse(localStorage.getItem("sitescopJobs")) || [];
+
+    jobs.push(recycleBin[index]);
+
+    recycleBin.splice(index,1);
+
+    localStorage.setItem(
+        "sitescopJobs",
+        JSON.stringify(jobs)
+    );
+
+    localStorage.setItem(
+        "sitescopRecycleBin",
+        JSON.stringify(recycleBin)
+    );
+
+    location.reload();
+}
+
+</script>
+
+</body>
+</html>
