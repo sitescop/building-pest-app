@@ -786,10 +786,21 @@ else if (field.type !== "file") {
 
         });
 
-        localStorage.setItem(
-            "sitescopDraftInspection",
-            JSON.stringify(formData)
-        );
+       let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
+
+jobs.push({
+    jobNumber: document.getElementById("jobNumber").value,
+    date: new Date().toLocaleDateString(),
+    client: formData["field_4"] || "",
+    inspectionType: formData["field_2"] || "",
+    status: "Draft",
+    data: formData
+});
+
+localStorage.setItem(
+    "sitescopJobs",
+    JSON.stringify(jobs)
+);
 
         alert("Draft saved successfully.");
     });
