@@ -68,11 +68,25 @@ function deleteJob(index) {
 
     let jobs = JSON.parse(localStorage.getItem("sitescopJobs")) || [];
 
-    jobs.splice(index, 1);
+let recycleBin = JSON.parse(
+    localStorage.getItem("sitescopRecycleBin")
+) || [];
 
-    localStorage.setItem("sitescopJobs", JSON.stringify(jobs));
+recycleBin.push(jobs[index]);
 
-    location.reload();
+localStorage.setItem(
+    "sitescopRecycleBin",
+    JSON.stringify(recycleBin)
+);
+
+jobs.splice(index, 1);
+
+localStorage.setItem(
+    "sitescopJobs",
+    JSON.stringify(jobs)
+);
+
+location.reload();
 
 }
 </script>
