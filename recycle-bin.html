@@ -18,7 +18,8 @@
         <th>Client</th>
         <th>Date</th>
         <th>Inspection Type</th>
-        <th>Restore</th>
+        <th>Restore</th> 
+        <th>Delete Forever</th>
     </tr>
 </table>
 
@@ -45,7 +46,10 @@ recycleBin.forEach(job => {
         '<button onclick="restoreJob(' +
         recycleBin.indexOf(job) +
         ')">Restore</button>';
-
+row.insertCell(5).innerHTML =
+    '<button onclick="deleteForever(' +
+    recycleBin.indexOf(job) +
+    ')">Delete</button>';
 });
 
 function restoreJob(index) {
@@ -64,6 +68,24 @@ function restoreJob(index) {
         "sitescopJobs",
         JSON.stringify(jobs)
     );
+
+    localStorage.setItem(
+        "sitescopRecycleBin",
+        JSON.stringify(recycleBin)
+    );
+
+    location.reload();
+} 
+    function deleteForever(index) {
+
+    if (!confirm("Permanently delete this job?")) {
+        return;
+    }
+
+    let recycleBin =
+        JSON.parse(localStorage.getItem("sitescopRecycleBin")) || [];
+
+    recycleBin.splice(index, 1);
 
     localStorage.setItem(
         "sitescopRecycleBin",
