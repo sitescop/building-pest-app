@@ -95,6 +95,32 @@ function restoreJob(index) {
     );
 
     location.reload();
+} 
+    function restoreAllJobs() {
+
+    if (!confirm("Restore all jobs from the Recycle Bin?")) {
+        return;
+    }
+
+    let recycleBin =
+        JSON.parse(localStorage.getItem("sitescopRecycleBin")) || [];
+
+    let jobs =
+        JSON.parse(localStorage.getItem("sitescopJobs")) || [];
+
+    jobs = jobs.concat(recycleBin);
+
+    localStorage.setItem(
+        "sitescopJobs",
+        JSON.stringify(jobs)
+    );
+
+    localStorage.setItem(
+        "sitescopRecycleBin",
+        JSON.stringify([])
+    );
+
+    location.reload();
 }
 function emptyRecycleBin() {
 
