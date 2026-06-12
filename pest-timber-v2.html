@@ -1139,6 +1139,83 @@ function loadWallConstruction() {
 
     });
 }  
+   function addRoofConstruction() {
+
+    let input =
+        document.getElementById("newRoofConstruction");
+
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container =
+        document.getElementById("roofConstructionList");
+
+    let row = document.createElement("div");
+
+    row.className = "custom-roof-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveRoofConstruction();
+
+    input.value = "";
+
+}
+
+function saveRoofConstruction() {
+
+    let items = [];
+
+    document.querySelectorAll("#roofConstructionList .custom-roof-item")
+        .forEach(item => {
+
+            items.push({
+                text: item.querySelector("span").innerText,
+                checked: item.querySelector("input").checked
+            });
+
+        });
+
+    localStorage.setItem(
+        "roofConstructionCustom",
+        JSON.stringify(items)
+    );
+}
+
+function loadRoofConstruction() {
+
+    let items = JSON.parse(
+        localStorage.getItem("roofConstructionCustom")
+    ) || [];
+
+    let container =
+        document.getElementById("roofConstructionList");
+
+    items.forEach(item => {
+
+        let row = document.createElement("div");
+
+        row.className = "custom-roof-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+
+    });
+} 
 function addAccessRestriction() {
 
     let input =
@@ -1393,6 +1470,7 @@ function loadCondition() {
 loadAccessRestrictions();
 loadFloorConstruction();
 loadWallConstruction();
+loadRoofConstruction();
 loadChemicalBarrier();
 loadBridging();
 loadCondition();
