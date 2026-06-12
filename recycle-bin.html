@@ -7,7 +7,11 @@
 <body>
 
 <h1>Recycle Bin</h1>
+<button onclick="emptyRecycleBin()">
+    Empty Recycle Bin
+</button>
 
+<br><br>
 <table border="1" id="recycleTable">
     <tr>
         <th>Job No</th>
@@ -68,7 +72,21 @@ function restoreJob(index) {
 
     location.reload();
 }
+function emptyRecycleBin() {
 
+    if (!confirm(
+        "Are you sure you want to permanently delete ALL jobs in the Recycle Bin?"
+    )) {
+        return;
+    }
+
+    localStorage.setItem(
+        "sitescopRecycleBin",
+        JSON.stringify([])
+    );
+
+    location.reload();
+}
 </script>
 
 </body>
