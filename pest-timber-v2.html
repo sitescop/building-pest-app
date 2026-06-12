@@ -179,10 +179,26 @@
 
 <p>
 <label>Floor Construction</label><br>
-<input type="checkbox"> Concrete Slab<br>
-<input type="checkbox"> Suspended Timber Floor<br>
-<input type="checkbox"> Suspended Concrete Floor<br>
-<input type="checkbox"> Steel Frame Floor<br>
+
+<div id="floorConstructionList">
+<label><input type="checkbox"> Concrete Slab</label><br>
+<label><input type="checkbox"> Suspended Timber Floor</label><br>
+<label><input type="checkbox"> Suspended Concrete Floor</label><br>
+<label><input type="checkbox"> Steel Frame Floor</label><br>
+</div>
+
+<br>
+
+<input
+type="text"
+id="newFloorConstruction"
+placeholder="Add floor construction..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addFloorConstruction()"
+>
+
+<button type="button" onclick="addFloorConstruction()">Add</button>
+
 </p>
 
 <p>
@@ -867,7 +883,40 @@ if (currentInspection && currentInspection.data) {
 
     });
 
+} 
+ function addFloorConstruction() {
+
+    let input =
+        document.getElementById("newFloorConstruction");
+
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container =
+        document.getElementById("floorConstructionList");
+
+    let row = document.createElement("div");
+
+    row.innerHTML =
+        '<label><input type="checkbox"> ' +
+        value +
+        '</label> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    input.value = "";
 }
+
+function deleteCustomItem(btn) {
+
+    if (!confirm("Are you sure you want to delete this item?")) {
+        return;
+    }
+
+    btn.parentElement.remove();
+}   
 </script>
 </body>
 </html>
