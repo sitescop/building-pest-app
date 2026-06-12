@@ -1216,6 +1216,83 @@ function loadRoofConstruction() {
 
     });
 } 
+    function addRoofCovering() {
+
+    let input =
+        document.getElementById("newRoofCovering");
+
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container =
+        document.getElementById("roofCoveringList");
+
+    let row = document.createElement("div");
+
+    row.className = "custom-covering-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveRoofCovering();
+
+    input.value = "";
+
+}
+
+function saveRoofCovering() {
+
+    let items = [];
+
+    document.querySelectorAll("#roofCoveringList .custom-covering-item")
+        .forEach(item => {
+
+            items.push({
+                text: item.querySelector("span").innerText,
+                checked: item.querySelector("input").checked
+            });
+
+        });
+
+    localStorage.setItem(
+        "roofCoveringCustom",
+        JSON.stringify(items)
+    );
+}
+
+function loadRoofCovering() {
+
+    let items = JSON.parse(
+        localStorage.getItem("roofCoveringCustom")
+    ) || [];
+
+    let container =
+        document.getElementById("roofCoveringList");
+
+    items.forEach(item => {
+
+        let row = document.createElement("div");
+
+        row.className = "custom-covering-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+
+    });
+}
 function addAccessRestriction() {
 
     let input =
@@ -1474,7 +1551,7 @@ loadRoofConstruction();
 loadChemicalBarrier();
 loadBridging();
 loadCondition();
-
+loadRoofCovering();
 
 
 </script>
