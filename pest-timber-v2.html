@@ -203,27 +203,76 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 
 <p>
 <label>Wall Construction</label><br>
+
+<div id="wallConstructionList">
 <input type="checkbox"> Brick Veneer<br>
 <input type="checkbox"> Double Brick<br>
 <input type="checkbox"> Timber Frame<br>
 <input type="checkbox"> Fibre Cement<br>
 <input type="checkbox"> Concrete<br>
-</p>
+</div>
+
+<br>
+
+<input
+type="text"
+id="newWallConstruction"
+placeholder="Add wall construction..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addWallConstruction()">
+
+<button type="button" onclick="addWallConstruction()">Add</button>
 
 <p>
 <label>Roof Construction</label><br>
+
+<div id="roofConstructionList">
 <input type="checkbox"> Timber Frame<br>
 <input type="checkbox"> Steel Frame<br>
 <input type="checkbox"> Concrete<br>
-</p>
+</div>
+
+<br>
+
+<input
+type="text"
+id="newRoofConstruction"
+placeholder="Add roof construction..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addRoofConstruction()">
+
+<button type="button" onclick="addRoofConstruction()">Add</button>
 
 <p>
 <label>Roof Covering</label><br>
+
+<div id="roofCoveringList">
 <input type="checkbox"> Concrete Tile<br>
 <input type="checkbox"> Terracotta Tile<br>
 <input type="checkbox"> Metal Roof<br>
 <input type="checkbox"> Slate<br>
-</p>
+</div>
+
+<br>
+
+<input
+type="text"
+id="newRoofCovering"
+placeholder="Add roof covering..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addRoofCovering()">
+
+<button type="button" onclick="addRoofCovering()">Add</button>
+<br>
+
+<input
+type="text"
+id="newRoofCovering"
+placeholder="Add roof covering..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addRoofCovering()">
+
+<button type="button" onclick="addRoofCovering()">Add</button>
 
 <hr>
 
@@ -275,7 +324,7 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 
 <h2>Access Restrictions & Obstructions</h2>
 
-<p>
+<div id="accessRestrictionsList">
 <input type="checkbox"> Stored Goods<br>
 <input type="checkbox"> Furniture<br>
 <input type="checkbox"> Vegetation<br>
@@ -283,8 +332,28 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 <input type="checkbox"> Insulation<br>
 <input type="checkbox"> Locked Areas<br>
 <input type="checkbox"> Safety Risk<br>
-<input type="checkbox"> Other
-</p>
+<input type="checkbox"> Other<br>
+</div>
+<br>
+
+<input
+type="text"
+id="newAccessRestriction"
+placeholder="Add access restriction..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addAccessRestriction()">
+
+<button type="button" onclick="addAccessRestriction()">Add</button>
+<br>
+
+<input
+type="text"
+id="newAccessRestriction"
+placeholder="Add access restriction..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addAccessRestriction()">
+
+<button type="button" onclick="addAccessRestriction()">Add</button>
 
 <p>
 <label>Comments</label><br>
@@ -510,13 +579,25 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 
 <h2>Chemical Barrier Recommendation</h2>
 
-<p>
+<div id="chemicalBarrierList">
 <input type="checkbox"> Chemical Barrier Recommended<br>
 <input type="checkbox"> Physical Barrier Recommended<br>
 <input type="checkbox"> Annual Inspection Recommended<br>
-<input type="checkbox"> Further Investigation Required
-</p>
+<input type="checkbox"> Further Investigation Required<br>
+</div>
 
+<br>
+
+<input
+type="text"
+id="newChemicalBarrier"
+placeholder="Add chemical barrier..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addChemicalBarrier()">
+
+<button type="button" onclick="addChemicalBarrier()">Add</button>
+
+<br><br>
 <p>
 <label>Recommendation Details</label><br>
 <textarea rows="6" cols="80"></textarea>
@@ -579,15 +660,27 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 
 <h2>Bridging & High Ground Levels</h2>
 
-<p>
+<div id="bridgingList">
 <input type="checkbox"> Bridging Of Termite Barrier<br>
 <input type="checkbox"> Bridging Of Inspection Zone<br>
 <input type="checkbox"> High Ground Levels<br>
 <input type="checkbox"> Garden Beds Above Slab Level<br>
 <input type="checkbox"> Pathway Bridging Slab Edge<br>
-<input type="checkbox"> Render Below Slab Level
-</p>
+<input type="checkbox"> Render Below Slab Level<br>
+</div>
 
+<br>
+
+<input
+type="text"
+id="newBridging"
+placeholder="Add bridging item..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addBridging()">
+
+<button type="button" onclick="addBridging()">Add</button>
+
+<br><br>
 <p>
 <label>Comments</label><br>
 <textarea rows="6" cols="80"></textarea>
@@ -602,7 +695,7 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 
 <h2>Conditions Conducive To Timber Pest Attack</h2>
 
-<p>
+<div id="conditionsList">
 <input type="checkbox"> Tree Stumps<br>
 <input type="checkbox"> Timber Debris<br>
 <input type="checkbox"> Ground Contact Timbers<br>
@@ -611,8 +704,21 @@ onkeypress="if(event.key==='Enter') addFloorConstruction()"
 <input type="checkbox"> Excessive Moisture<br>
 <input type="checkbox"> Vegetation Against Building<br>
 <input type="checkbox"> Stored Timber<br>
-<input type="checkbox"> Inadequate Subfloor Ventilation
-</p>
+<input type="checkbox"> Inadequate Subfloor Ventilation<br>
+</div>
+
+<br>
+
+<input
+type="text"
+id="newCondition"
+placeholder="Add condition..."
+style="width:250px;"
+onkeypress="if(event.key==='Enter') addCondition()">
+
+<button type="button" onclick="addCondition()">Add</button>
+
+<br><br>
 
 <p>
 <label>Comments</label><br>
@@ -971,8 +1077,261 @@ function loadFloorConstruction() {
 
     });
 }
+function addAccessRestriction() {
 
+    let input =
+        document.getElementById("newAccessRestriction");
+
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container =
+        document.getElementById("accessRestrictionsList");
+
+    let row = document.createElement("div");
+
+    row.className = "custom-access-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveAccessRestrictions();
+
+    input.value = "";
+}
+
+function saveAccessRestrictions() {
+
+    let items = [];
+
+    document
+        .querySelectorAll("#accessRestrictionsList .custom-access-item")
+        .forEach(row => {
+
+            items.push({
+                text: row.querySelector("span").textContent,
+                checked: row.querySelector("input").checked
+            });
+
+        });
+
+    localStorage.setItem(
+        "accessRestrictionsCustomItems",
+        JSON.stringify(items)
+    );
+}
+
+function loadAccessRestrictions() {
+
+    let items = JSON.parse(
+        localStorage.getItem("accessRestrictionsCustomItems") || "[]"
+    );
+
+    let container =
+        document.getElementById("accessRestrictionsList");
+
+    items.forEach(item => {
+
+        let row = document.createElement("div");
+
+        row.className = "custom-access-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+
+    });
+}
+function addChemicalBarrier() {
+    let input = document.getElementById("newChemicalBarrier");
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container = document.getElementById("chemicalBarrierList");
+
+    let row = document.createElement("div");
+    row.className = "custom-chemical-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveChemicalBarrier();
+
+    input.value = "";
+}
+
+function saveChemicalBarrier() {
+    let items = [];
+
+    document.querySelectorAll("#chemicalBarrierList .custom-chemical-item").forEach(row => {
+        items.push({
+            text: row.querySelector("span").textContent,
+            checked: row.querySelector("input").checked
+        });
+    });
+
+    localStorage.setItem("chemicalBarrierItems", JSON.stringify(items));
+}
+
+function loadChemicalBarrier() {
+    let saved = JSON.parse(localStorage.getItem("chemicalBarrierItems") || "[]");
+
+    let container = document.getElementById("chemicalBarrierList");
+
+    saved.forEach(item => {
+        let row = document.createElement("div");
+        row.className = "custom-chemical-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+    });
+}
+
+function addBridging() {
+    let input = document.getElementById("newBridging");
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container = document.getElementById("bridgingList");
+
+    let row = document.createElement("div");
+    row.className = "custom-bridging-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveBridging();
+
+    input.value = "";
+}
+
+function saveBridging() {
+    let items = [];
+
+    document.querySelectorAll("#bridgingList .custom-bridging-item").forEach(row => {
+        items.push({
+            text: row.querySelector("span").textContent,
+            checked: row.querySelector("input").checked
+        });
+    });
+
+    localStorage.setItem("bridgingItems", JSON.stringify(items));
+}
+
+function loadBridging() {
+    let saved = JSON.parse(localStorage.getItem("bridgingItems") || "[]");
+
+    let container = document.getElementById("bridgingList");
+
+    saved.forEach(item => {
+        let row = document.createElement("div");
+        row.className = "custom-bridging-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+    });
+}
+
+function addCondition() {
+    let input = document.getElementById("newCondition");
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container = document.getElementById("conditionsList");
+
+    let row = document.createElement("div");
+    row.className = "custom-condition-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+    container.appendChild(row);
+
+    saveCondition();
+
+    input.value = "";
+}
+
+function saveCondition() {
+    let items = [];
+
+    document.querySelectorAll("#conditionsList .custom-condition-item").forEach(row => {
+        items.push({
+            text: row.querySelector("span").textContent,
+            checked: row.querySelector("input").checked
+        });
+    });
+
+    localStorage.setItem("conditionItems", JSON.stringify(items));
+}
+
+function loadCondition() {
+    let saved = JSON.parse(localStorage.getItem("conditionItems") || "[]");
+
+    let container = document.getElementById("conditionsList");
+
+    saved.forEach(item => {
+        let row = document.createElement("div");
+        row.className = "custom-condition-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+    });
+}
+loadAccessRestrictions();
 loadFloorConstruction();
+loadChemicalBarrier();
+loadBridging();
+loadCondition();
 
 
 
