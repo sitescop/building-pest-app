@@ -897,18 +897,20 @@ if (currentInspection && currentInspection.data) {
         document.getElementById("floorConstructionList");
 
     let row = document.createElement("div");
-
-    row.innerHTML =
-        '<label><input type="checkbox"> ' +
-        value +
-        '</label> ' +
-        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+row.className = "custom-floor-item";
+   row.innerHTML =
+    '<input type="checkbox"> <span>' +
+    value +
+    '</span> ' +
+    '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
 
     container.appendChild(row);
 
 saveFloorConstruction();
 
 input.value = "";
+
+}
 
 function deleteCustomItem(btn) {
 
@@ -972,7 +974,7 @@ function loadFloorConstruction() {
 
 loadFloorConstruction();
 
-loadFloorConstruction();
+
 
 
 </script>
