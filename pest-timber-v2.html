@@ -906,8 +906,9 @@ if (currentInspection && currentInspection.data) {
 
     container.appendChild(row);
 
-    input.value = "";
-}
+saveFloorConstruction();
+
+input.value = "";
 
 function deleteCustomItem(btn) {
 
@@ -915,8 +916,65 @@ function deleteCustomItem(btn) {
         return;
     }
 
-    btn.parentElement.remove();
+   btn.parentElement.remove();
+
+saveFloorConstruction();
 }   
+   
+
+function saveFloorConstruction() {
+
+    let items = [];
+
+    document.querySelectorAll("#floorConstructionList .custom-floor-item")
+        .forEach(item => {
+
+            items.push({
+                text: item.querySelector("span").innerText,
+                checked: item.querySelector("input").checked
+            });
+
+        });
+
+    localStorage.setItem(
+        "floorConstructionCustom",
+        JSON.stringify(items)
+    );
+}
+
+function loadFloorConstruction() {
+
+    let items = JSON.parse(
+        localStorage.getItem("floorConstructionCustom")
+    ) || [];
+
+    let container =
+        document.getElementById("floorConstructionList");
+
+    items.forEach(item => {
+
+        let row = document.createElement("div");
+
+        row.className = "custom-floor-item";
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+
+    });
+}
+
+loadFloorConstruction();
+
+loadFloorConstruction();
+
+
 </script>
 </body>
 </html>
