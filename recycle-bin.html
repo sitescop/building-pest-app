@@ -6,7 +6,15 @@
 </head>
 <body>
 
-<h1>Recycle Bin</h1>
+<h1>Recycle Bin</h1> 
+    <input
+    type="text"
+    id="searchBox"
+    placeholder="Search deleted jobs..."
+    onkeyup="searchRecycleBin()"
+>
+
+<br><br>
 <button onclick="emptyRecycleBin()">
     Empty Recycle Bin
 </button>
@@ -96,6 +104,29 @@ function restoreJob(index) {
 
     location.reload();
 } 
+    function searchRecycleBin() {
+
+    let filter =
+        document.getElementById("searchBox")
+        .value
+        .toLowerCase();
+
+    let table =
+        document.getElementById("recycleTable");
+
+    let rows = table.getElementsByTagName("tr");
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let text =
+            rows[i].textContent.toLowerCase();
+
+        rows[i].style.display =
+            text.includes(filter)
+            ? ""
+            : "none";
+    }
+}
     function restoreAllJobs() {
 
     if (!confirm("Restore all jobs from the Recycle Bin?")) {
