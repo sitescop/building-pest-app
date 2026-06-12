@@ -1062,7 +1062,93 @@ function loadFloorConstruction() {
         container.appendChild(row);
 
     });
+} 
+ function addWallConstruction() {
+
+    let input =
+       document.getElementById("newWallConstruction");
+
+    let value = input.value.trim();
+
+    if (value === "") return;
+
+    let container =
+       document.getElementById("wallConstructionList");
+
+    let row = document.createElement("div");
+row.className = "custom-wall-item";
+   row.innerHTML =
+    '<input type="checkbox"> <span>' +
+    value +
+    '</span> ' +
+   onclick="deleteWallItem(this)"
+
+    container.appendChild(row);
+
+saveWallConstruction();
+
+input.value = "";
+
 }
+
+function deleteCustomItem(btn) {
+
+    if (!confirm("Are you sure you want to delete this item?")) {
+        return;
+    }
+
+   btn.parentElement.remove();
+
+saveWallConstruction();
+}   
+   
+
+function saveWallConstruction() {
+
+    let items = [];
+
+    "#wallConstructionList .custom-wall-item"
+        .forEach(item => {
+
+            items.push({
+                text: item.querySelector("span").innerText,
+                checked: item.querySelector("input").checked
+            });
+
+        });
+
+    localStorage.setItem(
+       "wallConstructionCustom"
+        JSON.stringify(items)
+    );
+}
+
+function loadWallConstruction() {
+
+    let items = JSON.parse(
+        "wallConstructionCustom"
+    ) || [];
+
+    let container =
+       "wallConstructionList"
+
+    items.forEach(item => {
+
+        let row = document.createElement("div");
+
+        "custom-wall-item"
+
+        row.innerHTML =
+            '<input type="checkbox"' +
+            (item.checked ? ' checked' : '') +
+            '> <span>' +
+            item.text +
+            '</span> ' +
+            '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
+
+        container.appendChild(row);
+
+    });    
 function addAccessRestriction() {
 
     let input =
