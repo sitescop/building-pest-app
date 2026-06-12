@@ -1063,51 +1063,40 @@ function loadFloorConstruction() {
 
     });
 } 
- function addWallConstruction() {
+function addWallConstruction() {
 
     let input =
-       document.getElementById("newWallConstruction");
+        document.getElementById("newWallConstruction");
 
     let value = input.value.trim();
 
     if (value === "") return;
 
     let container =
-       document.getElementById("wallConstructionList");
+        document.getElementById("wallConstructionList");
 
     let row = document.createElement("div");
-row.className = "custom-wall-item";
-   row.innerHTML =
-    '<input type="checkbox"> <span>' +
-    value +
-    '</span> ' +
-   onclick="deleteWallItem(this)"
+
+    row.className = "custom-wall-item";
+
+    row.innerHTML =
+        '<input type="checkbox"> <span>' +
+        value +
+        '</span> ' +
+        '<button type="button" onclick="deleteCustomItem(this)" style="width:18px;height:18px;padding:0;">X</button>';
 
     container.appendChild(row);
 
-saveWallConstruction();
+    saveWallConstruction();
 
-input.value = "";
-
+    input.value = "";
 }
-
-function deleteCustomItem(btn) {
-
-    if (!confirm("Are you sure you want to delete this item?")) {
-        return;
-    }
-
-   btn.parentElement.remove();
-
-saveWallConstruction();
-}   
-   
 
 function saveWallConstruction() {
 
     let items = [];
 
-    "#wallConstructionList .custom-wall-item"
+    document.querySelectorAll("#wallConstructionList .custom-wall-item")
         .forEach(item => {
 
             items.push({
@@ -1118,7 +1107,7 @@ function saveWallConstruction() {
         });
 
     localStorage.setItem(
-       "wallConstructionCustom"
+        "wallConstructionCustom",
         JSON.stringify(items)
     );
 }
@@ -1126,17 +1115,17 @@ function saveWallConstruction() {
 function loadWallConstruction() {
 
     let items = JSON.parse(
-        "wallConstructionCustom"
+        localStorage.getItem("wallConstructionCustom")
     ) || [];
 
     let container =
-       "wallConstructionList"
+        document.getElementById("wallConstructionList");
 
     items.forEach(item => {
 
         let row = document.createElement("div");
 
-        "custom-wall-item"
+        row.className = "custom-wall-item";
 
         row.innerHTML =
             '<input type="checkbox"' +
@@ -1148,7 +1137,8 @@ function loadWallConstruction() {
 
         container.appendChild(row);
 
-    });    
+    });
+}  
 function addAccessRestriction() {
 
     let input =
@@ -1402,10 +1392,10 @@ function loadCondition() {
 
 loadAccessRestrictions();
 loadFloorConstruction();
+loadWallConstruction();
 loadChemicalBarrier();
 loadBridging();
 loadCondition();
-
 
 
 
