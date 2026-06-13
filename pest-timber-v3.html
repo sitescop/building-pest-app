@@ -1,1 +1,340 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SiteScop Inspection Platform V3</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f5f5;
+padding-top:70px;
+}
+
+.toolbar{
+position:fixed;
+top:0;
+left:0;
+right:0;
+height:60px;
+background:#222;
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px;
+z-index:9999;
+}
+
+.toolbar button{
+padding:10px 15px;
+cursor:pointer;
+border:none;
+border-radius:4px;
+font-weight:bold;
+}
+
+.back-btn{
+background:#888;
+color:white;
+}
+
+.save-btn{
+background:#28a745;
+color:white;
+}
+
+.update-btn{
+background:#007bff;
+color:white;
+}
+
+.pdf-btn{
+background:#dc3545;
+color:white;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:20px;
+}
+
+.section{
+background:white;
+margin-bottom:15px;
+border-radius:8px;
+overflow:hidden;
+box-shadow:0 2px 4px rgba(0,0,0,.1);
+}
+
+.section-header{
+background:#333;
+color:white;
+padding:15px;
+cursor:pointer;
+font-size:18px;
+font-weight:bold;
+}
+
+.section-content{
+padding:20px;
+display:block;
+}
+
+.form-row{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+margin-bottom:5px;
+font-weight:bold;
+}
+
+input,
+select,
+textarea{
+width:100%;
+padding:10px;
+}
+
+h1{
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="toolbar">
+
+<button class="back-btn" onclick="goBack()">← Back</button>
+
+<button class="save-btn" onclick="saveDraft()">Save Draft</button>
+
+<button class="update-btn" onclick="updateInspection()">Update Job</button>
+
+<button class="pdf-btn" onclick="generatePDF()">Generate PDF</button>
+
+</div>
+
+<div class="container">
+
+<h1>SiteScop Inspection Platform V3</h1>
+
+<div class="section">
+
+<div class="section-header"
+onclick="toggleSection(this)">
+Job Details
+</div>
+
+<div class="section-content">
+
+<div class="form-row">
+<label>Job Number</label>
+<input
+type="text"
+id="jobNumber"
+readonly>
+</div>
+
+<div class="form-row">
+<label>Inspection Type</label>
+
+<select id="inspectionType">
+
+<option>Pest & Timber</option>
+
+<option>Building Inspection</option>
+
+<option>Combined Building & Pest</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="section-header"
+onclick="toggleSection(this)">
+Client Details
+</div>
+
+<div class="section-content">
+
+<div class="form-row">
+<label>Client Type</label>
+
+<select id="clientType">
+<option>Owner</option>
+<option>Purchaser</option>
+</select>
+
+</div>
+
+<div class="form-row">
+<label>Client Name</label>
+<input type="text" id="clientName">
+</div>
+
+<div class="form-row">
+<label>Mobile</label>
+<input type="text" id="clientMobile">
+</div>
+
+<div class="form-row">
+<label>Email</label>
+<input type="email" id="clientEmail">
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="section-header"
+onclick="toggleSection(this)">
+Referrer Details
+</div>
+
+<div class="section-content">
+
+<div class="form-row">
+
+<label>Referrer Type</label>
+
+<select id="referrerType">
+
+<option>Not Applicable</option>
+<option>Real Estate Agent</option>
+<option>Conveyancer</option>
+<option>Solicitor</option>
+<option>Property Manager</option>
+<option>Other</option>
+
+</select>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="section-header"
+onclick="toggleSection(this)">
+Property Details
+</div>
+
+<div class="section-content">
+
+<div class="form-row">
+<label>Property Address</label>
+<input type="text" id="propertyAddress">
+</div>
+
+<div class="form-row">
+<label>Suburb</label>
+<input type="text" id="suburb">
+</div>
+
+<div class="form-row">
+<label>State</label>
+<input type="text" id="state">
+</div>
+
+<div class="form-row">
+<label>Postcode</label>
+<input type="text" id="postcode">
+</div>
+
+</div>
+
+</div>
+
+<div class="section">
+
+<div class="section-header"
+onclick="toggleSection(this)">
+Inspector Profile
+</div>
+
+<div class="section-content">
+
+<div class="form-row">
+<label>Inspector Name</label>
+<input type="text" id="inspectorName">
+</div>
+
+<div class="form-row">
+<label>Inspector Email</label>
+<input type="email" id="inspectorEmail">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function toggleSection(header){
+
+const content =
+header.nextElementSibling;
+
+content.style.display =
+content.style.display === "none"
+? "block"
+: "none";
+
+}
+
+function goBack(){
+
+if(confirm(
+"Leave this page?"
+)){
+window.history.back();
+}
+
+}
+
+function saveDraft(){
+alert("Save engine coming next.");
+}
+
+function updateInspection(){
+alert("Update engine coming next.");
+}
+
+function generatePDF(){
+alert("PDF engine coming later.");
+}
+
+</script>
+
+</body>
+</html>
 
