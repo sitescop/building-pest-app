@@ -333,7 +333,357 @@ function generatePDF(){
 alert("PDF engine coming later.");
 }
 
+
+/* PASTE NEW CODE HERE */
+function collectFormData() {
+
+    let data = {};
+
+    document
+        .querySelectorAll("input, select, textarea")
+        .forEach(field => {
+
+            if (!field.id) return;
+
+            if (
+                field.type === "checkbox"
+            ) {
+                data[field.id] =
+                    field.checked;
+            }
+            else {
+                data[field.id] =
+                    field.value;
+            }
+
+        });
+
+    return data;
+}
+
+
+
+function saveDraft() {
+
+    let jobs = getJobs();
+
+    let jobNumber =
+        document.getElementById("jobNumber").value;
+
+    if (!jobNumber) {
+
+        alert(
+            "Please enter Job Number."
+        );
+
+        return;
+    }
+
+    let existingIndex =
+        jobs.findIndex(
+            job =>
+            job.jobNumber === jobNumber
+        );
+
+    let inspection = {
+
+        version: "V3",
+
+        jobNumber: jobNumber,
+
+        dateSaved:
+            new Date()
+            .toLocaleString(),
+
+        status: "Draft",
+
+        data:
+            collectFormData()
+
+    };
+
+    if (
+        existingIndex > -1
+    ) {
+
+        jobs[existingIndex] =
+            inspection;
+
+    } else {
+
+        jobs.push(
+            inspection
+        );
+
+    }
+
+    saveJobs(jobs);
+
+    alert(
+        "Draft Saved Successfully"
+    );
+
+} 
+function updateInspection() {
+
+    let jobs = getJobs();
+
+    let jobNumber =
+        document.getElementById("jobNumber").value;
+
+    if (!jobNumber) {
+
+        alert(
+            "Please enter Job Number."
+        );
+
+        return;
+    
+    }
+
+    let existingIndex =
+        jobs.findIndex(
+            job =>
+            job.jobNumber === jobNumber
+        );
+
+    if (
+        existingIndex === -1
+    ) {
+
+        alert(
+            "Job not found."
+        );
+
+        return;
+    }
+
+    jobs[existingIndex] = {
+
+        ...jobs[existingIndex],
+
+        lastUpdated:
+            new Date()
+            .toLocaleString(),
+
+        status: "Updated",
+
+        data:
+            collectFormData()
+
+    };
+
+    saveJobs(jobs);
+
+    alert(
+        "Job Updated Successfully"
+    );
+
+} 
+  function loadInspection(jobNumber) {
+
+    let jobs = getJobs();
+
+    let inspection =
+        jobs.find(
+            job =>
+            job.jobNumber === jobNumber
+        );
+
+    if (!inspection) {
+        return;
+    }
+
+    let data =
+        inspection.data;
+
+    Object.keys(data)
+        .forEach(key => {
+
+        let field =
+            document.getElementById(key);
+
+        if (!field) return;
+
+        if (
+            field.type === "checkbox"
+        ) {
+            field.checked =
+                data[key];
+        }
+        else {
+            field.value =
+                data[key];
+        }
+
+    });
+
+} 
+  const INSPECTOR_PROFILE_KEY =
+    "sitescopInspectorProfile";
+
+function saveInspectorProfile() {
+
+    let profile = {
+
+        name:
+            document.getElementById(
+                "inspectorName"
+            )?.value || "",
+
+        email:
+            document.getElementById(
+                "inspectorEmail"
+            )?.value || ""
+
+    };
+
+    localStorage.setItem(
+        INSPECTOR_PROFILE_KEY,
+        JSON.stringify(profile)
+    );
+
+}
+
+function loadInspectorProfile() {
+
+    let profile =
+        JSON.parse(
+            localStorage.getItem(
+                INSPECTOR_PROFILE_KEY
+            )
+        ) || {};
+
+    let nameField =
+        document.getElementById(
+            "inspectorName"
+        );
+
+    let emailField =
+        document.getElementById(
+            "inspectorEmail"
+        );
+
+    if (
+        nameField &&
+        profile.name
+    ) {
+        nameField.value =
+            profile.name;
+    }
+
+    if (
+        emailField &&
+        profile.email
+    ) {
+        emailField.value =
+            profile.email;
+    }
+
+} 
+  document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadInspectorProfile();
+
+        let inspectorName =
+            document.getElementById(
+                "inspectorName"
+            );
+
+        let inspectorEmail =
+            document.getElementById(
+                "inspectorEmail"
+            );
+
+        if (inspectorName) {
+
+            inspectorName.addEventListener(
+                "change",
+                saveInspectorProfile
+            );
+
+        }
+
+        if (inspectorEmail) {
+
+            inspectorEmail.addEventListener(
+                "change",
+                saveInspectorProfile
+            );
+
+        }
+
+    }
+);
+  const JOB_COUNTER_KEY =
+    "sitescopJobCounter";
+
+function generateJobNumber() {
+
+    let jobField =
+        document.getElementById(
+            "jobNumber"
+        );
+
+    if (!jobField) return;
+
+    if (
+        jobField.value.trim() !== ""
+    ) {
+        return;
+    }
+
+    let counter =
+        parseInt(
+            localStorage.getItem(
+                JOB_COUNTER_KEY
+            )
+        ) || 1;
+
+    let jobNumber =
+        "PT-" +
+        String(counter)
+        .padStart(4, "0");
+
+    jobField.value =
+        jobNumber;
+
+}
+
+function incrementJobCounter() {
+
+    let counter =
+        parseInt(
+            localStorage.getItem(
+                JOB_COUNTER_KEY
+            )
+        ) || 1;
+
+    counter++;
+
+    localStorage.setItem(
+        JOB_COUNTER_KEY,
+        counter
+    );
+
+}
+const STORAGE_KEY = "sitescopJobsV3";
+
+function getJobs() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+}
+
+function saveJobs(jobs) {
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(jobs)
+    );
+}
+
 </script>
+
 
 </body>
 </html>
